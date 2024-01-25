@@ -22,8 +22,8 @@ class BookView extends GetView<BookController> {
               itemCount: state!.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text("${state[index].judul}"),
-                  subtitle: Text("Penulis ${state[index].penulis}"),
+                  title: Text("${state[index].judul} (${state[index].tahunTerbit})"),
+                  subtitle: Text("Penulis ${state[index].penulis}, Penerbit ${state[index].penerbit}"),
                 );
               },
               separatorBuilder: (context, index) {
