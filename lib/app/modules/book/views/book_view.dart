@@ -10,19 +10,25 @@ class BookView extends GetView<BookController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BookView'),
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: ()=> Get.toNamed(Routes.ADD_BOOK),
-      child: Icon(Icons.add),
-      ),
-      body: const Center(
-        child: Text(
-          'BookView is working',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          title: const Text('BookView'),
+          centerTitle: true,
         ),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Get.toNamed(Routes.ADD_BOOK),
+          child: Icon(Icons.add),
+        ),
+        body: controller.obx((state) => ListView.separated(
+              itemCount: state!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text("${state[index].judul}"),
+                  subtitle: Text("Penulis ${state[index].penulis}"),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
+            )));
   }
 }
